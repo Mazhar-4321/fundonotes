@@ -7,9 +7,13 @@ export const getAllUsers = async () => {
 };
 // Add User To Document
 export const registerUser = async (userData) => {
+  try{
   userData.password = bcrypt.hashSync(userData.password, 10);
   const data = await User.create(userData)
   return data
+  }catch(err){
+    throw new Error(err)
+  }
 }
 
 

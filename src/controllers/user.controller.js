@@ -10,11 +10,10 @@ import * as UserService from '../services/user.service';
 export const getAllUsers = async (req, res, next) => {
   try {
     const data = await UserService.registerUser(req.body);
-    // res.status(HttpStatus.OK).json({
-    //   code: HttpStatus.OK,
-    //   data: data,
-    //   message: 'All users fetched successfully'
-    // });
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      message: 'User Registered Successfully'
+    });
   } catch (error) {
     next(error);
   }
