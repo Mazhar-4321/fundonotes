@@ -1,0 +1,73 @@
+info: Server started at http://localhost:7000/api/v1/ {"timestamp":"2023-01-25T10:29:49.116Z"}
+info: Connected to the database. {"timestamp":"2023-01-25T10:29:49.169Z"}
+error: 
+    status - 500 
+    message - Error: data and salt arguments required
+    at Object.hashSync (D:\ExpressProjects\fundonotes\node_modules\bcrypt\bcrypt.js:91:15)
+    at _callee2$ (D:\ExpressProjects\fundonotes\src\services\/user.service.js:10:30)
+    at tryCatch (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\regeneratorRuntime.js:44:17)
+    at Generator.<anonymous> (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\regeneratorRuntime.js:125:22)
+    at Generator.next (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\regeneratorRuntime.js:69:21)
+    at asyncGeneratorStep (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:3:24)
+    at _next (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:22:9)
+    at D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:27:7
+    at new Promise (<anonymous>)
+    at Object.<anonymous> (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:19:12)
+    at Object.registerUser (D:\ExpressProjects\fundonotes\src\services\/user.service.js:9:26)
+    at _callee$ (D:\ExpressProjects\fundonotes\src\controllers\/user.controller.js:12:36)
+    at tryCatch (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\regeneratorRuntime.js:44:17)
+    at Generator.<anonymous> (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\regeneratorRuntime.js:125:22)
+    at Generator.next (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\regeneratorRuntime.js:69:21)
+    at asyncGeneratorStep (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:3:24)
+    at _next (D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:22:9)
+    at D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:27:7
+    at new Promise (<anonymous>)
+    at D:\ExpressProjects\fundonotes\node_modules\@babel\runtime\helpers\asyncToGenerator.js:19:12
+    at getAllUsers (D:\ExpressProjects\fundonotes\src\controllers\/user.controller.js:10:25)
+    at Layer.handle [as handle_request] (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\layer.js:95:5)
+    at D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:328:13)
+    at D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:328:13)
+    at D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:280:10)
+    at logger (D:\ExpressProjects\fundonotes\node_modules\morgan\index.js:144:5)
+    at Layer.handle [as handle_request] (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:328:13)
+    at D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\ExpressProjects\fundonotes\node_modules\express\lib\router\index.js:280:10)
+    at D:\ExpressProjects\fundonotes\node_modules\body-parser\lib\read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:199:9)
+    at invokeCallback (D:\ExpressProjects\fundonotes\node_modules\raw-body\index.js:231:16)
+    at done (D:\ExpressProjects\fundonotes\node_modules\raw-body\index.js:220:7)
+    at IncomingMessage.onEnd (D:\ExpressProjects\fundonotes\node_modules\raw-body\index.js:280:7)
+    at IncomingMessage.emit (node:events:377:35)
+    at IncomingMessage.emit (node:domain:470:12)
+    at endReadableNT (node:internal/streams/readable:1312:12) 
+    url - /api/v1/users 
+    method - GET 
+    IP - ::1
+   {"timestamp":"2023-01-25T10:31:48.694Z"}
+info: Server started at http://localhost:7000/api/v1/ {"timestamp":"2023-01-25T10:32:53.524Z"}
+info: Connected to the database. {"timestamp":"2023-01-25T10:32:53.574Z"}
+info: Server started at http://localhost:7000/api/v1/ {"timestamp":"2023-01-25T10:33:18.262Z"}
+info: Connected to the database. {"timestamp":"2023-01-25T10:33:18.304Z"}
+info: Server started at http://localhost:7000/api/v1/ {"timestamp":"2023-01-25T10:35:20.095Z"}
+info: Connected to the database. {"timestamp":"2023-01-25T10:35:20.144Z"}
+info: Server started at http://localhost:7000/api/v1/ {"timestamp":"2023-01-25T10:38:55.079Z"}
+info: Connected to the database. {"timestamp":"2023-01-25T10:38:55.130Z"}
