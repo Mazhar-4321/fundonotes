@@ -21,9 +21,12 @@ export const signIn = async (userData) => {
     const data = await User.find({
       "email": userData.email
     })
+    console.log(data)
     if (data) {
-      const [password, err] = bcrypt.compare(userData.password, data.password)
-      if (err) {
+    console.log("data successful",data[0].password,userData.password)
+      const verified = bcrypt.compareSync( userData.password,data[0].password)
+      console.log("verified",verified)
+      if (!verified) {
         throw new Error('Invalid Password')
       } else {
         return 'Login Successful'
