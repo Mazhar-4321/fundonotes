@@ -22,7 +22,7 @@ export const signIn = async (userData) => {
       "email": userData.email
     })
     console.log(data)
-    if (data) {
+    if (data.length>=1) {
     console.log("data successful",data[0].password,userData.password)
       const verified = bcrypt.compareSync( userData.password,data[0].password)
       console.log("verified",verified)
