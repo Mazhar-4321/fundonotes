@@ -14,4 +14,16 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
+export const signInUser=async(req,res,next)=>{
+  try {
+    const data = await UserService.signIn(req.body);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      message: data
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 
