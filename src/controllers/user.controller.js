@@ -1,7 +1,5 @@
 import HttpStatus from 'http-status-codes';
 import * as UserService from '../services/user.service';
-
-
 export const registerUser = async (req, res, next) => {
   try {
     const data = await UserService.registerUser(req.body);
@@ -13,7 +11,6 @@ export const registerUser = async (req, res, next) => {
     next(error);
   }
 };
-
 export const signInUser=async(req,res,next)=>{
   try {
     const data = await UserService.signIn(req.body);
