@@ -16,7 +16,8 @@ export const signInUser=async(req,res,next)=>{
     const data = await UserService.signIn(req.body);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
-      message: data
+      data: req.body.email,
+      token:data
     });
   } catch (error) {
     next(error);
