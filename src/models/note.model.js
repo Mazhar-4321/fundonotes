@@ -3,7 +3,6 @@ const noteSchema = new Schema(
   {
     title: {
       type: String,
-      unique: true
     },
     description: {
       type: String
