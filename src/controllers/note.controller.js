@@ -1,5 +1,6 @@
 import HttpStatus from 'http-status-codes'
 import * as NoteService from '../services/note.service'
+
 export const createNote = async (req, res, next) => {
   try {
     const data = await NoteService.createNote(req.body)
@@ -11,10 +12,11 @@ export const createNote = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+}
+
 export const updateNote = async (req, res, next) => {
   try {
-    const data = await NoteService.updateNote(req.params.title, req.body.description);
+    const data = await NoteService.updateNote(req.params.id, req.body.description);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
@@ -24,9 +26,10 @@ export const updateNote = async (req, res, next) => {
     next(error);
   }
 }
+
 export const deleteNote = async (req, res, next) => {
   try {
-    const data = await NoteService.deleteNote(req.params.title);
+    const data = await NoteService.deleteNote(req.params.id);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
@@ -36,9 +39,10 @@ export const deleteNote = async (req, res, next) => {
     next(error)
   }
 }
+
 export const findNote = async (req, res, next) => {
   try {
-    const data = await NoteService.findNote(req.params.title);
+    const data = await NoteService.findNote(req.params.id);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
@@ -47,6 +51,7 @@ export const findNote = async (req, res, next) => {
     next(error)
   }
 }
+
 export const findAllNotes = async (req, res, next) => {
   try {
     const data = await NoteService.findAllNotes();
