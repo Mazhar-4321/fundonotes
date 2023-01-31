@@ -138,4 +138,17 @@ export const findArchivedNote = async (req, res, next) => {
   }
 }
 
+export const updateNoteArchiveStatus = async (req, res, next) => {
+  try {
+    const data = await NoteService.updateNoteArchiveStatus(req);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: data,
+      message: 'Note Archive Status Updated'
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 
