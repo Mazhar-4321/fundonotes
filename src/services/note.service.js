@@ -9,37 +9,37 @@ export const createNote = async (note) => {
   }
 }
 
-export const deleteNote = async (id) => {
+export const deleteNote = async (req) => {
   try {
-    const data = await Note.findOneAndDelete({ "_id": id })
+    const data = await Note.findOneAndDelete({ "_id": req.params.id })
     return data
   } catch (err) {
     throw new Error(err)
   }
 }
 
-export const findNote = async (id) => {
+export const findNote = async (req) => {
   try {
-    const data = await Note.findOne({ "_id": id })
+    const data = await Note.findOne({ "_id": req.params.id,archive:false,trash:false,userId:req.body.userId })
     return data
   } catch (err) {
     throw new Error(err)
   }
 }
 
-export const findAllNotes = async () => {
+export const findAllNotes = async (userId) => {
   try {
-    const data = await Note.find()
+    const data = await Note.find({archive:false,trash:false,userId:userId})
     return data
   } catch (err) {
     throw new Error(err)
   }
 }
 
-export const updateNote = async (id, description) => {
+export const updateNote = async (req) => {
   try {
-    const filter = { "_id": id }
-    const update = { "description": description }
+    const filter = { "_id": req.params.id }
+    const update = req.body
     const data = await Note.findOneAndUpdate(filter, update)
     return data
   } catch (err) {
