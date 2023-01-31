@@ -33,7 +33,7 @@ export const deleteNote = async (req, res, next) => {
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
-      message: 'Note Deleted Successfully'
+      message: 'Note Moved To Trash Successfully'
     });
   } catch (error) {
     next(error)
@@ -94,7 +94,7 @@ export const updateTrashNote = async (req, res, next) => {
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
-      message: 'Note Updated Successfully'
+      message: 'Trash Status Of Note Updated'
     });
   } catch (error) {
     next(error);
@@ -107,7 +107,7 @@ export const deleteTrashNote = async (req, res, next) => {
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
-      message: 'Note Deleted Successfully'
+      message: 'Note Permanently Deleted'
     });
   } catch (error) {
     next(error);
