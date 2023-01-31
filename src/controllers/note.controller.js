@@ -88,4 +88,17 @@ export const findTrashNote = async (req, res, next) => {
   }
 }
 
+export const updateTrashNote = async (req, res, next) => {
+  try {
+    const data = await NoteService.updateTrashNote(req);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: data,
+      message: 'Note Updated Successfully'
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 
