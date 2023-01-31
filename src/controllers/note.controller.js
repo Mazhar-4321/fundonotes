@@ -76,4 +76,16 @@ export const findAllTrashNotes = async (req, res, next) => {
   }
 }
 
+export const findTrashNote = async (req, res, next) => {
+  try {
+    const data = await NoteService.findTrashNote(req);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: data,
+    });
+  } catch (error) {
+    next(error)
+  }
+}
+
 
