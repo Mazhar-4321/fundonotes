@@ -59,3 +59,12 @@ export const findAllTrashNotes = async (userId) => {
     throw new Error(err)
   }
 }
+
+export const findTrashNote = async (req) => {
+  try {
+    const data = await Note.findOne({ "_id": req.params.id, trash: true, userId: req.body.userId })
+    return data
+  } catch (err) {
+    throw new Error(err)
+  }
+}
