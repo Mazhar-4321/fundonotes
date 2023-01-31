@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.post('/', newNoteValidator,userAuth, NoteController.createNote)
 
-router.put('/:id',userAuth, NoteController.updateNote)
+router.put('/:id',newNoteValidator,userAuth, NoteController.updateNote)
 
 router.get('/',userAuth,NoteController.findAllNotes)
 
