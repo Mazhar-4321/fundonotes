@@ -68,3 +68,14 @@ export const findTrashNote = async (req) => {
     throw new Error(err)
   }
 }
+
+export const updateTrashNote = async (req) => {
+  try {
+    const filter = { "_id": req.params.id, trash: true, userId: req.body.userId }
+    const update = { trash: !trash }
+    const data = await Note.findOneAndUpdate(filter, update)
+    return data
+  } catch (err) {
+    throw new Error(err)
+  }
+}
