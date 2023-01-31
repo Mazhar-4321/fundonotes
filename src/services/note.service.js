@@ -107,3 +107,15 @@ export const findArchivedNote = async (req) => {
     throw new Error(err)
   }
 }
+
+export const updateNoteArchiveStatus = async (req) => {
+  try {
+    const filter = { "_id": req.params.id, userId: req.body.userId }
+    const archivedNote = await Note.findOne({ "_id": req.params.id, userId: req.body.userId })
+    const update = { "archive": !archivedNote.archive }
+    const data = await Note.findOneAndUpdate(filter, update)
+    return data
+  } catch (err) {
+    throw new Error(err)
+  }
+}
