@@ -9,9 +9,9 @@ router.post('/', newNoteValidator,userAuth, NoteController.createNote)
 
 router.put('/:id',newNoteValidator,userAuth, NoteController.updateNote)
 
-router.get('/',userAuth,NoteController.findAllNotes)
-
 router.get('/:id',userAuth,NoteController.findNote)
+
+router.get('/',userAuth,NoteController.findAllNotes)
 
 router.delete('/:id',userAuth,NoteController.deleteNote)
 
