@@ -11,7 +11,11 @@ export const createNote = async (note) => {
 
 export const deleteNote = async (req) => {
   try {
-    const data = await Note.findOneAndDelete({ "_id": req.params.id })
+    const filter = { "_id": req.params.id, userId: req.body.userId, trash: false }
+    const update = {
+      trash: true
+    }
+    const data = await Note.findOneAndUpdate(filter, update)
     return data
   } catch (err) {
     throw new Error(err)
