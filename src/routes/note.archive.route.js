@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.get('/:id',userAuth,NoteController.findArchivedNote)
 
-router.get('/',userAuth,NoteController.findAllTrashNotes)
+router.get('/',userAuth,NoteController.findAllArchivedNotes)
 
 router.put('/:id',userAuth,NoteController.updateNoteArchiveStatus)
 
