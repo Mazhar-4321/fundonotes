@@ -116,7 +116,19 @@ export const deleteTrashNote = async (req, res, next) => {
 
 export const findAllArchivedNotes = async (req, res, next) => {
   try {
-    const data = await NoteService.findAllTrashNotes(req.body.userId);
+    const data = await NoteService.findAllArchivedNotes(req.body.userId);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: data,
+    });
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const findArchivedNote = async (req, res, next) => {
+  try {
+    const data = await NoteService.findArchivedNote(req);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
