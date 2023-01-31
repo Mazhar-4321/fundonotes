@@ -16,7 +16,7 @@ export const createNote = async (req, res, next) => {
 
 export const updateNote = async (req, res, next) => {
   try {
-    const data = await NoteService.updateNote(req.params.id, req.body.description);
+    const data = await NoteService.updateNote(req);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
@@ -29,7 +29,7 @@ export const updateNote = async (req, res, next) => {
 
 export const deleteNote = async (req, res, next) => {
   try {
-    const data = await NoteService.deleteNote(req.params.id);
+    const data = await NoteService.deleteNote(req);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
@@ -42,7 +42,7 @@ export const deleteNote = async (req, res, next) => {
 
 export const findNote = async (req, res, next) => {
   try {
-    const data = await NoteService.findNote(req.params.id);
+    const data = await NoteService.findNote(req);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
