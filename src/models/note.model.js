@@ -11,10 +11,12 @@ const noteSchema = new Schema(
       type: String,
     },
     archive: {
-      type: Boolean
+      type: Boolean,
+      default:false
     },
     trash: {
-      type: Boolean
+      type: Boolean,
+      default:false
     },
     userId: {
       type: String
