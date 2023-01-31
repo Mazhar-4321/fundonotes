@@ -84,7 +84,11 @@ export const updateTrashNote = async (req) => {
 export const deleteTrashNote = async (req) => {
   try {
     const data = await Note.findOneAndRemove({ "_id": req.params.id, trash: true, userId: req.body.userId })
+    if(data){
     return data
+    }else{
+      throw new Error('Note Doesn\'t Exist In Trash')
+    }
   } catch (err) {
     throw new Error(err)
   }
