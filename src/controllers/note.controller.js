@@ -101,4 +101,17 @@ export const updateTrashNote = async (req, res, next) => {
   }
 }
 
+export const deleteTrashNote = async (req, res, next) => {
+  try {
+    const data = await NoteService.deleteTrashNote(req);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: data,
+      message: 'Note Deleted Successfully'
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 
