@@ -15,9 +15,9 @@ router.get('/:id',userAuth,NoteController.findNote)
 
 router.delete('/:id',userAuth,NoteController.deleteNote)
 
-router.get('/trash',userAuth,NoteController.findAllTrashNotes)
-
 router.get('/trash/:id',userAuth,NoteController.findTrashNote)
+
+router.get('/trash',userAuth,NoteController.findAllTrashNotes)
 
 router.put('/trash/:id',userAuth,NoteController.updateTrashNote)
 
