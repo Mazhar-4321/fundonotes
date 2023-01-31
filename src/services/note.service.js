@@ -98,3 +98,12 @@ export const findAllArchivedNotes = async (userId) => {
     throw new Error(err)
   }
 }
+
+export const findArchivedNote = async (req) => {
+  try {
+    const data = await Note.findOne({ "_id": req.params.id, trash: false,archive:true, userId: req.body.userId })
+    return data
+  } catch (err) {
+    throw new Error(err)
+  }
+}
