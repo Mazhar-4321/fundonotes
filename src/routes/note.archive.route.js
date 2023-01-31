@@ -5,6 +5,8 @@ import { userAuth } from '../middlewares/auth.middleware'
 
 const router = express.Router()
 
+router.get('/:id',userAuth,NoteController.findArchivedNote)
+
 router.get('/',userAuth,NoteController.findAllTrashNotes)
 
 export default router
