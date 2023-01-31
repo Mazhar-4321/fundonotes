@@ -9,4 +9,6 @@ router.get('/:id',userAuth,NoteController.findArchivedNote)
 
 router.get('/',userAuth,NoteController.findAllTrashNotes)
 
+router.put('/:id',userAuth,NoteController.updateNoteArchiveStatus)
+
 export default router
