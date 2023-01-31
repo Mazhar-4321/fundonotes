@@ -17,6 +17,9 @@ router.delete('/:id',userAuth,NoteController.deleteNote)
 
 router.get('/trash',userAuth,NoteController.findAllTrashNotes)
 
+router.get('/trash/:id',userAuth,NoteController.findTrashNote)
+
+
 
 
 export default router
