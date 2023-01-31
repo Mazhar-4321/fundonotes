@@ -54,7 +54,7 @@ export const findNote = async (req, res, next) => {
 
 export const findAllNotes = async (req, res, next) => {
   try {
-    const data = await NoteService.findAllNotes();
+    const data = await NoteService.findAllNotes(req.body.userId);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
