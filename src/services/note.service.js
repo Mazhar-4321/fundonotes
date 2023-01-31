@@ -50,3 +50,12 @@ export const updateNote = async (req) => {
     throw new Error(err)
   }
 }
+
+export const findAllTrashNotes = async (userId) => {
+  try {
+    const data = await Note.find({ trash: true, userId: userId })
+    return data
+  } catch (err) {
+    throw new Error(err)
+  }
+}
