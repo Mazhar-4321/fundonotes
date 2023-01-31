@@ -64,4 +64,16 @@ export const findAllNotes = async (req, res, next) => {
   }
 }
 
+export const findAllTrashNotes = async (req, res, next) => {
+  try {
+    const data = await NoteService.findAllTrashNotes(req.body.userId);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: data,
+    });
+  } catch (error) {
+    next(error)
+  }
+}
+
 
