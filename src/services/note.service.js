@@ -42,7 +42,7 @@ export const findAllNotes = async (userId) => {
 
 export const updateNote = async (req) => {
   try {
-    const filter = { "_id": req.params.id, userId: req.body.userId }
+    const filter = { "_id": req.params.id, userId: req.body.userId,new:true }
     const update = req.body
     const data = await Note.findOneAndUpdate(filter, update)
     return data
@@ -71,7 +71,7 @@ export const findTrashNote = async (req) => {
 
 export const updateTrashNote = async (req) => {
   try {
-    const filter = { "_id": req.params.id, userId: req.body.userId }
+    const filter = { "_id": req.params.id, userId: req.body.userId,new:true }
     const trashNote = await Note.findOne({ "_id": req.params.id, userId: req.body.userId })
     const update = { "trash": !trashNote.trash }
     const data = await Note.findOneAndUpdate(filter, update)
@@ -114,7 +114,7 @@ export const findArchivedNote = async (req) => {
 
 export const updateNoteArchiveStatus = async (req) => {
   try {
-    const filter = { "_id": req.params.id, userId: req.body.userId }
+    const filter = { "_id": req.params.id, userId: req.body.userId ,new:true}
     const archivedNote = await Note.findOne({ "_id": req.params.id, userId: req.body.userId })
     const update = { "archive": !archivedNote.archive }
     const data = await Note.findOneAndUpdate(filter, update)
