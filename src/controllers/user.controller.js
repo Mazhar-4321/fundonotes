@@ -1,32 +1,34 @@
 import HttpStatus from 'http-status-codes';
 import * as UserService from '../services/user.service';
+
 export const registerUser = async (req, res, next) => {
   try {
     const data = await UserService.registerUser(req.body);
-    if(data){
-    res.status(HttpStatus.OK).json({
-      code: HttpStatus.OK,
-      message: 'User Registered Successfully'
-    });
-  }else{
-    throw new Error('Database Operation Failed')
-  }
+    if (data) {
+      res.status(HttpStatus.OK).json({
+        code: HttpStatus.OK,
+        message: 'User Registered Successfully'
+      });
+    } else {
+      throw new Error('Database Operation Failed')
+    }
   } catch (error) {
     next(error);
   }
 };
+
 export const signInUser = async (req, res, next) => {
   try {
     const data = await UserService.signIn(req.body);
-    if(data){
-    res.status(HttpStatus.OK).json({
-      code: HttpStatus.OK,
-      data: req.body.email,
-      token: data
-    });
-  }else{
-    throw new Error('Database Operation Failed')
-  }
+    if (data) {
+      res.status(HttpStatus.OK).json({
+        code: HttpStatus.OK,
+        data: req.body.email,
+        token: data
+      });
+    } else {
+      throw new Error('Database Operation Failed')
+    }
   } catch (error) {
     res.status(HttpStatus.NOT_FOUND).json({
       code: HttpStatus.NOT_FOUND,

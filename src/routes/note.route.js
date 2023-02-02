@@ -7,8 +7,6 @@ const router = express.Router()
 
 router.post('/', newNoteValidator,userAuth, NoteController.createNote)
 
-router.put('/email',NoteController.sendEmail)
-
 router.put('trash/:id',userAuth,NoteController.updateTrashNote)
 
 router.put('archive/:id',userAuth,NoteController.updateNoteArchiveStatus)

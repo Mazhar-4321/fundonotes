@@ -10,7 +10,10 @@ export const createNote = async (req, res, next) => {
       message: 'Note Added Successfully'
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -23,7 +26,10 @@ export const updateNote = async (req, res, next) => {
       message: 'Note Updated Successfully'
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -36,7 +42,10 @@ export const deleteNote = async (req, res, next) => {
       message: 'Note Moved To Trash Successfully'
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -48,7 +57,10 @@ export const findNote = async (req, res, next) => {
       data: data
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 export const findAllNotes = async (req, res, next) => {
@@ -59,7 +71,10 @@ export const findAllNotes = async (req, res, next) => {
       data: data
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -71,7 +86,10 @@ export const findAllTrashNotes = async (req, res, next) => {
       data: data
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -83,7 +101,10 @@ export const findTrashNote = async (req, res, next) => {
       data: data
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -96,7 +117,10 @@ export const updateTrashNote = async (req, res, next) => {
       message: 'Trash Status Of Note Updated'
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -109,7 +133,10 @@ export const deleteTrashNote = async (req, res, next) => {
       message: 'Note Permanently Deleted'
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -121,7 +148,10 @@ export const findAllArchivedNotes = async (req, res, next) => {
       data: data
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -133,7 +163,10 @@ export const findArchivedNote = async (req, res, next) => {
       data: data
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
@@ -146,7 +179,10 @@ export const updateNoteArchiveStatus = async (req, res, next) => {
       message: 'Note Archive Status Updated'
     });
   } catch (error) {
-    next(error);
+    res.status(HttpStatus.BAD_REQUEST).json({
+      code: HttpStatus.BAD_REQUEST,
+      error: error.message.split(":")[1],
+    });
   }
 };
 
