@@ -24,4 +24,15 @@ export const signInUser=async(req,res,next)=>{
   }
 }
 
-
+export const forgetPassword=async(req,res,next)=>{
+  try {
+    const data = await UserService.forgotPassword(req.body);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: req.body.email,
+      token:data
+    });
+  } catch (error) {
+    next(error);
+  }
+}
