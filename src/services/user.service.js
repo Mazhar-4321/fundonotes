@@ -1,5 +1,7 @@
 import User from '../models/user.model';
+import Token from '../models/token.model;'
 import Jwt from 'jsonwebtoken';
+import { sendEmail } from '../utils/user.util';
 const bcrypt = require('bcrypt');
 export const registerUser = async (userData) => {
   try {
@@ -25,6 +27,32 @@ export const signIn = async (userData) => {
       }
     } else {
       throw new Error('Invalid Email');
+    }
+  }
+  catch (err) {
+    throw new Error(err)
+  }
+}
+const getRandomString = () => {
+  let result = ' ';
+  const characters = 'QWERTYUIOPASDFGHJKLZXCVBNM'
+  const charactersLength = characters.length;
+  let counter = 0
+  while (counter < charactersLength) {
+    result += characters[Math.floor(Math.random() * charactersLength)]
+    counter++
+  }
+  return result
+}
+export const forgotPassword = async (email) => {
+  try {
+    const data = User.findOne({ email: email })
+    if (data) {
+      const randomString = getRandomString()
+      const link=`${process.env.APP_HOST}:${process.env.APP_PORT}/api/${process.env.APP_VERSION}/users/reset/${randomString}`;
+      sendEmail(email,link)
+    } else {
+      throw new Error('Email Doesn\'t Exist')
     }
   }
   catch (err) {
