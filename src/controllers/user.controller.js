@@ -36,3 +36,17 @@ export const forgetPassword=async(req,res,next)=>{
     next(error);
   }
 }
+
+export const resetPassword=async(req,res,next)=>{
+  try {
+    console.log("controller")
+    const data = await UserService.resetPassword(req);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: req.body.email,
+      token:data
+    });
+  } catch (error) {
+    next(error);
+  }
+}
