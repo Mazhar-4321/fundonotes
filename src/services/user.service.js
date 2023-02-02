@@ -25,7 +25,7 @@ export const signIn = async (userData) => {
       if (!verified) {
         throw new Error('Invalid Password')
       } else {
-        var token = Jwt.sign({ email: userData.email }, process.env.SECRET_KEY);
+        var token = await Jwt.sign({ email: userData.email }, process.env.SECRET_KEY);
         return token
       }
     } else {
@@ -39,16 +39,16 @@ export const signIn = async (userData) => {
 
 export const forgotPassword = async (email) => {
   try {
-    let data = User.findOne({ email: email.email })
+    let data = await User.findOne({ email: email.email })
     if (data) {
-      var token = Jwt.sign({ email: email.email }, process.env.FORGET_PASSWORD_SECRET_KEY);
+      var token =await  Jwt.sign({ email: email.email }, process.env.FORGET_PASSWORD_SECRET_KEY);
       data = await Token.create({
         token: token,
         expiry: 1200000,
         createdTime: new Date().getTime()
       })
       const link = `${process.env.APP_HOST}:${process.env.APP_PORT}/api/${process.env.API_VERSION}/users/reset/${data.token}`;
-      sendEmail(email.email, link)
+    await  sendEmail(email.email, link)
     } else {
       throw new Error('Email Doesn\'t Exist')
     }
