@@ -151,8 +151,7 @@ describe('User APIs Test', () => {
         .send(userDetails)
         .end((err, res) => {
           var data = JSON.parse(res.text)
-          token = data.token
-          process.env.TOKEN=token
+          process.env.TOKEN=data.token
           expect(res.statusCode).to.be.equal(200);
           done();
         });
@@ -169,8 +168,6 @@ describe('User APIs Test', () => {
         .post('/api/v1/users/login')
         .send(userDetails)
         .end((err, res) => {
-          var data = JSON.parse(res.text)
-          token = data.token
           expect(res.statusCode).to.be.equal(404);
           done();
         });
@@ -187,8 +184,6 @@ describe('User APIs Test', () => {
         .post('/api/v1/users/login')
         .send(userDetails)
         .end((err, res) => {
-          var data = JSON.parse(res.text)
-          token = data.token
           expect(res.statusCode).to.be.equal(400);
           done();
         });
@@ -204,8 +199,6 @@ describe('User APIs Test', () => {
         .put('/api/v1/users/forget')
         .send(userDetails)
         .end((err, res) => {
-          var data = JSON.parse(res.text)
-          token = data.token
           expect(res.statusCode).to.be.equal(200);
           done();
         });
@@ -221,8 +214,6 @@ describe('User APIs Test', () => {
         .put('/api/v1/users/forget')
         .send(userDetails)
         .end((err, res) => {
-          var data = JSON.parse(res.text)
-          token = data.token
           expect(res.statusCode).to.be.equal(404);
           done();
         });
@@ -238,8 +229,6 @@ describe('User APIs Test', () => {
         .put(`/api/v1/users/reset/${process.env.RESET_LINK}`)
         .send(userDetails)
         .end((err, res) => {
-          var data = JSON.parse(res.text)
-          token = data.token
           expect(res.statusCode).to.be.equal(200);
           done();
         });
@@ -255,8 +244,6 @@ describe('User APIs Test', () => {
         .put(`/api/v1/users/reset/123123`)
         .send(userDetails)
         .end((err, res) => {
-          var data = JSON.parse(res.text)
-          token = data.token
           expect(res.statusCode).to.be.equal(400);
           done();
         });
@@ -272,8 +259,6 @@ describe('User APIs Test', () => {
         .put(`/api/v1/users/reset/${process.env.RESET_LINK}`)
         .send(userDetails)
         .end((err, res) => {
-          var data = JSON.parse(res.text)
-          token = data.token
           expect(res.statusCode).to.be.equal(400);
           done();
         });
