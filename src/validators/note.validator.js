@@ -9,7 +9,11 @@ export const newNoteValidator = (req, res, next) => {
     const { error, value } = schema.validate(req.body);
     if (error) {
         console.log(error)
-        next(error);
+        res.status(400).json({
+            code: 400,
+            error: error.message.split(":")[1],
+          });
+        
     } else {
         next();
     }
