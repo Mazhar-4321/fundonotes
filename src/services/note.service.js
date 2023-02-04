@@ -1,15 +1,16 @@
 import Note from '../models/note.model';
+import logger from '../config/myLogger';
 
 const nodemailer = require('nodemailer');
 
 export const createNote = async (note) => {
   try {
     const data = await Note.create(note);
-    if(data){
+    if (data) {
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -26,11 +27,11 @@ export const deleteNote = async (req) => {
       trash: true
     };
     const data = await Note.findOneAndUpdate(filter, update);
-    if(data){
+    if (data) {
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -40,15 +41,13 @@ export const findNote = async (req) => {
   try {
     const data = await Note.findOne({
       _id: req.params.id,
-      archive: false,
-      trash: false,
       userId: req.body.userId
     });
-    if(data){
+    if (data) {
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -57,15 +56,14 @@ export const findNote = async (req) => {
 export const findAllNotes = async (userId) => {
   try {
     const data = await Note.find({
-      archive: false,
-      trash: false,
       userId: userId
     });
-    if(data){
+    if (data) {
+      logger.info(`Notes Retrieved Successfully , Volume=${data.length}`)
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -75,12 +73,13 @@ export const updateNote = async (req) => {
   try {
     const filter = { _id: req.params.id, userId: req.body.userId, new: true };
     const update = req.body;
-    const data = await Note.findOneAndUpdate(filter, update);
-    if(data){
+    const data = await Note.findByIdAndUpdate(filter, update);
+    if (data) {
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -89,11 +88,11 @@ export const updateNote = async (req) => {
 export const findAllTrashNotes = async (userId) => {
   try {
     const data = await Note.find({ trash: true, userId: userId });
-    if(data){
+    if (data) {
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -106,11 +105,11 @@ export const findTrashNote = async (req) => {
       trash: true,
       userId: req.body.userId
     });
-    if(data){
+    if (data) {
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -124,12 +123,12 @@ export const updateTrashNote = async (req) => {
       userId: req.body.userId
     });
     const update = { trash: !trashNote.trash };
-    const data = await Note.findOneAndUpdate(filter, update);
-    if(data){
+    const data = await Note.findByIdAndUpdate(filter, update);
+    if (data) {
       return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
+    } else {
+      throw new Error('error:Database Operation Failed')
+    }
   } catch (err) {
     throw new Error(err);
   }
@@ -152,22 +151,7 @@ export const deleteTrashNote = async (req) => {
   }
 };
 
-export const findAllArchivedNotes = async (userId) => {
-  try {
-    const data = await Note.find({
-      trash: false,
-      archive: true,
-      userId: userId
-    });
-    if(data){
-      return data;
-      }else{
-        throw new Error('error:Database Operation Failed')
-      }
-  } catch (err) {
-    throw new Error(err);
-  }
-};
+
 
 export const findArchivedNote = async (req) => {
   try {
@@ -177,9 +161,9 @@ export const findArchivedNote = async (req) => {
       archive: true,
       userId: req.body.userId
     });
-    if(data){
-    return data;
-    }else{
+    if (data) {
+      return data;
+    } else {
       throw new Error('error:Database Operation Failed')
     }
   } catch (err) {
@@ -195,10 +179,10 @@ export const updateNoteArchiveStatus = async (req) => {
       userId: req.body.userId
     });
     const update = { archive: !archivedNote.archive };
-    const data = await Note.findOneAndUpdate(filter, update);
-    if(data){
-    return data;
-    }else{
+    const data = await Note.findByIdAndUpdate(filter, update);
+    if (data) {
+      return data;
+    } else {
       throw new Error('error:Database Operation Failed')
     }
   } catch (err) {
