@@ -9,17 +9,13 @@ var transporter = nodemailer.createTransport({
 });
 
 
-export const sendEmail = async (emailId, message) => {
+export const sendEmail = async (recipient, message) => {
     try {
         await transporter.sendMail({
             from: 'syedmazharali742@gmail.com',
-            to: emailId,
+            to: recipient,
             subject: 'Reset Password Link',
-            text: `<html>
-            <body>
-            <a>${message}</a>
-            </body>
-            </html>`
+            text: `${message}`
         }, (err, res) => {
            
         });
