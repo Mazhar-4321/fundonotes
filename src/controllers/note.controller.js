@@ -140,20 +140,7 @@ export const deleteTrashNote = async (req, res, next) => {
   }
 };
 
-export const findAllArchivedNotes = async (req, res, next) => {
-  try {
-    const data = await NoteService.findAllArchivedNotes(req.body.userId);
-    res.status(HttpStatus.OK).json({
-      code: HttpStatus.OK,
-      data: data
-    });
-  } catch (error) {
-    res.status(HttpStatus.BAD_REQUEST).json({
-      code: HttpStatus.BAD_REQUEST,
-      error: error.message.split(":")[1],
-    });
-  }
-};
+
 
 export const findArchivedNote = async (req, res, next) => {
   try {
