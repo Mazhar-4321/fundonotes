@@ -7,9 +7,9 @@ const router = express.Router()
 
 router.post('/', newNoteValidator,userAuth, NoteController.createNote)
 
-router.put('trash/:id',userAuth,NoteController.updateTrashNote)
+router.put('/archive/:id',userAuth,NoteController.updateNoteArchiveStatus)
 
-router.put('archive/:id',userAuth,NoteController.updateNoteArchiveStatus)
+router.put('/trash/:id',userAuth,NoteController.updateTrashNote)
 
 router.put('/:id',newNoteValidator,userAuth, NoteController.updateNote)
 
@@ -19,14 +19,12 @@ router.get('/archive/:id',userAuth,NoteController.findArchivedNote)
 
 router.get('/trash',userAuth,NoteController.findAllTrashNotes)
 
-router.get('/archive',userAuth,NoteController.findAllArchivedNotes)
-
 router.get('/:id',userAuth,NoteController.findNote)
 
 router.get('/',userAuth,NoteController.findAllNotes)
 
 router.delete('/:id',userAuth,NoteController.deleteNote)
 
-router.delete('trash/:id',userAuth,NoteController.deleteTrashNote)
+router.delete('/trash/:id',userAuth,NoteController.deleteTrashNote)
  
 export default router
