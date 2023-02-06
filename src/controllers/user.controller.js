@@ -39,12 +39,8 @@ export const signInUser = async (req, res, next) => {
 
 export const forgetPassword = async (req, res, next) => {
   try {
-    const data = await UserService.forgotPassword(req.body);
-    res.status(HttpStatus.OK).json({
-      code: HttpStatus.OK,
-      data: req.body.email,
-      token: data
-    });
+    const data = await UserService.forgotPassword(req.body,res);
+   
   } catch (error) {
     res.status(HttpStatus.NOT_FOUND).json({
       code: HttpStatus.NOT_FOUND,
@@ -56,6 +52,7 @@ export const forgetPassword = async (req, res, next) => {
 export const resetPassword = async (req, res, next) => {
   try {
     const data = await UserService.resetPassword(req);
+    
     if (data) {
       res.status(HttpStatus.OK).json({
         code: HttpStatus.OK,
