@@ -19,7 +19,7 @@ export const newUserValidator = (req, res, next) => {
   if (error) {
     res.status(400).json({
       code: 400,
-      error: error.message.split(":")[1],
+      error: error.details[0].message,
     });
   } else {
     next();
@@ -41,7 +41,7 @@ export const passwordValidator = (req, res, next) => {
   if (error) {
     res.status(400).json({
       code: 400,
-      error: error.message.split(":")[1],
+      error: error.details[0].message,
     });
   } else {
     next();
@@ -64,7 +64,7 @@ export const loginValidator = (req, res, next) => {
   if (error) {
     res.status(400).json({
       code: 400,
-      error: error.message.split(":")[1],
+      error: error.details[0].message,
     });
   } else {
     next();
@@ -79,7 +79,7 @@ export const emailValidator = (req, res, next) => {
   if (error) {
     res.status(400).json({
       code: 400,
-      error: error.message.split(":")[1],
+      error: error.details[0].message,
     });
   } else {
     next();
