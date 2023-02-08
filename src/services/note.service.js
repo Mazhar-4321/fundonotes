@@ -1,12 +1,14 @@
 import Note from '../models/note.model';
 import logger from '../config/myLogger';
-
+import { client } from '../index.js';
 const nodemailer = require('nodemailer');
+
 
 export const createNote = async (note) => {
   try {
     const data = await Note.create(note);
     if (data) {
+      updateRedis(req.body.userId)
       logger.info(`Note Created Successfully for ${data._id}`)
       return data;
     } else {
@@ -31,6 +33,7 @@ export const deleteNote = async (req) => {
     };
     const data = await Note.findOneAndUpdate(filter, update);
     if (data) {
+      updateRedis(req.body.userId)
       logger.info(`Note Deleted Successfully Of ${req.params.id}`)
       return data;
     } else {
@@ -44,11 +47,13 @@ export const deleteNote = async (req) => {
 };
 
 export const findNote = async (req) => {
+
   try {
     const data = await Note.findOne({
       _id: req.params.id,
       userId: req.body.userId
     });
+    console.log("Reached Here")
     if (data) {
       logger.info(`Note Fetched Successfully For ${req.params.id}`)
       return data;
@@ -68,6 +73,7 @@ export const findAllNotes = async (userId) => {
       userId: userId
     });
     if (data) {
+      const cachedData = await client.HSET(userId, "userData", JSON.stringify(data))
       logger.info(`Notes Retrieved Successfully , Volume=${data.length}`)
       return data;
     } else {
@@ -86,6 +92,7 @@ export const updateNote = async (req) => {
     const update = req.body;
     const data = await Note.findByIdAndUpdate(filter, update);
     if (data) {
+      updateRedis(req.body.userId)
       logger.info(`Note Updated Successfully  For ${data._id}`)
       return data;
     } else {
@@ -144,6 +151,7 @@ export const updateTrashNote = async (req) => {
     const update = { trash: !trashNote.trash };
     const data = await Note.findByIdAndUpdate(filter, update);
     if (data) {
+      updateRedis(req.body.userId)
       logger.info(`Note By Id Sent To Trash For ${req.params.id}`)
       return data;
     } else {
@@ -164,6 +172,7 @@ export const deleteTrashNote = async (req) => {
       userId: req.body.userId
     });
     if (data) {
+      updateRedis(req.body.userId)
       logger.info(`Note From Trash Deleted For ${req.params.id}`)
       return data;
     } else {
@@ -187,6 +196,7 @@ export const findArchivedNote = async (req) => {
       userId: req.body.userId
     });
     if (data) {
+      updateRedis()
       logger.info(`Note Archived Fetched Successful For ${req.params.id}`)
       return data;
     } else {
@@ -209,6 +219,7 @@ export const updateNoteArchiveStatus = async (req) => {
     const update = { archive: !archivedNote.archive };
     const data = await Note.findByIdAndUpdate(filter, update);
     if (data) {
+      updateRedis(req.body.userId)
       logger.error(`Note Archived By Id For ${req.params.id}`)
       return data;
     } else {
@@ -220,4 +231,8 @@ export const updateNoteArchiveStatus = async (req) => {
     throw new Error(err);
   }
 };
+
+const updateRedis = async (userId) => {
+  await client.HDEL(userId,'userData')
+}
 
