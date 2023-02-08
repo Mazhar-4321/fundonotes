@@ -13,9 +13,14 @@ import {
   notFound
 } from './middlewares/error.middleware'
 import logger, { logStream } from './config/logger'
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../src/swagger/swagger.json'
 
 import morgan from 'morgan'
 
+const Redis = require('redis')
+export const client = Redis.createClient();
+ client.connect();
 const app = express()
 const host = process.env.APP_HOST
 const port = process.env.APP_PORT
@@ -29,6 +34,7 @@ app.use(morgan('combined', { stream: logStream }))
 
 database()
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(`/api/${api_version}`, routes())
 app.use(appErrorHandler)
 app.use(genericErrorHandler)
