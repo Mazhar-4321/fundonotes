@@ -136,6 +136,27 @@
             }
         },
         "/notes":{
+            "get": {
+                "tags": ["Notes"],
+                "description": "Get All Notes",
+                "parameters": [
+                    {
+                        "name": "Get All Notes",
+                        "description": "Get All Notes"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user is created"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
             "post": {
                 "tags": ["Notes"],
                 "description": "create Note",
@@ -160,14 +181,18 @@
                         "description": "Internal server error"
                     }
                 }
-            },
-            "get": {
+            }
+           
+        },
+        "/notes/{id}":{
+            "get":{
                 "tags": ["Notes"],
-                "description": "Get All Notes",
+                "description": "Get Note By Id",
                 "parameters": [
                     {
-                        "name": "Get All Notes",
-                        "description": "Get All Notes"
+                        "name": "Get Note",
+                        "in": "path",
+                        "description": "Get Note"
                     }
                 ],
                 "produces": [
@@ -181,10 +206,7 @@
                         "description": "Internal server error"
                     }
                 }
-            }
-
-        },
-        "/notes/{id}":{
+            },
             "put": {
                 "tags": ["Notes"],
                 "description": "Update Note",
@@ -236,54 +258,10 @@
                         "description": "Internal server error"
                     }
                 }
-            },
-            "get":{
-                "tags": ["Notes"],
-                "description": "Get Note By Id",
-                "parameters": [
-                    {
-                        "name": "Get Note",
-                        "in": "path",
-                        "description": "Get Note"
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user is created"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
             }
+           
         },
         "/notes/trash/{id}":{
-            "put":{
-                "tags": ["Notes"],
-                "description": "Update Trash Status Of Note",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name":"id",
-                        "description": "Send Note To Trash"
-                        
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Note Trashed"
-                    },
-                    "500": {
-                        "description": "Internal server error"
-                    }
-                }
-            },
             "get":{
                 "tags": ["Notes"],
                 "description": "Get Trash Note By Id",
@@ -306,17 +284,15 @@
                         "description": "Internal server error"
                     }
                 }
-            }
-        },
-        "/notes/archive/{id}":{
+            },
             "put":{
                 "tags": ["Notes"],
-                "description": "Update Archive Status Of Note",
+                "description": "Update Trash Status Of Note",
                 "parameters": [
                     {
                         "in": "path",
                         "name":"id",
-                        "description": "Send Note To Archives"
+                        "description": "Send Note To Trash"
                         
                     }
                 ],
@@ -325,13 +301,16 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Note Archived"
+                        "description": "Note Trashed"
                     },
                     "500": {
                         "description": "Internal server error"
                     }
                 }
-            },
+            }
+            
+        },
+        "/notes/archive/{id}":{
             "get":{
                 "tags": ["Notes"],
                 "description": "Get Archived Note By Id",
@@ -354,7 +333,30 @@
                         "description": "Internal server error"
                     }
                 }
+            },"put":{
+                "tags": ["Notes"],
+                "description": "Update Archive Status Of Note",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name":"id",
+                        "description": "Send Note To Archives"
+                        
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Note Archived"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
             }
+            
         }
 
        
