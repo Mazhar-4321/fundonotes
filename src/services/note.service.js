@@ -4,11 +4,11 @@ import { client } from '../index.js';
 const nodemailer = require('nodemailer');
 
 
-export const createNote = async (note) => {
+export const createNote = async (note,userId) => {
   try {
     const data = await Note.create(note);
     if (data) {
-      updateRedis(req.body.userId)
+      updateRedis(userId)
       logger.info(`Note Created Successfully for ${data._id}`)
       return data;
     } else {
@@ -47,7 +47,6 @@ export const deleteNote = async (req) => {
 };
 
 export const findNote = async (req) => {
-
   try {
     const data = await Note.findOne({
       _id: req.params.id,
@@ -100,7 +99,7 @@ export const updateNote = async (req) => {
       throw new Error('error:Database Operation Failed')
     }
   } catch (err) {
-    logger.info(`Note Updated Failed  For ${data._id}`)
+    logger.info(`Note Updated Failed  For ${req.params.id}`)
     throw new Error(err);
   }
 };

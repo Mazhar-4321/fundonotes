@@ -6,12 +6,11 @@ export const checkRedisForNotes = async (req, res, next) => {
   try {
     
     var cachedData=await client.HGETALL(req.body.userId)
-    
     if(cachedData['userData']!==undefined){
         cachedData=JSON.parse(cachedData['userData'])
-        console.log("From Cache")
         res.status(HttpStatus.StatusCodes.OK).json({
             code: HttpStatus.StatusCodes.OK,
+            msg:"From Cache",
             data: cachedData
           });
     }else{

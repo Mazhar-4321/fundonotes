@@ -3,7 +3,7 @@ import * as NoteService from '../services/note.service';
 
 export const createNote = async (req, res, next) => {
   try {
-    const data = await NoteService.createNote(req.body);
+    const data = await NoteService.createNote(req.body,req.body.userId);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
       data: data,
@@ -68,6 +68,7 @@ export const findAllNotes = async (req, res, next) => {
     const data = await NoteService.findAllNotes(req.body.userId);
     res.status(HttpStatus.OK).json({
       code: HttpStatus.OK,
+      msg:"From Mongo DB",
       data: data
     });
   } catch (error) {
