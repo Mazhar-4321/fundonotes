@@ -11,7 +11,7 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
        }),
    */
 const logger = winston.createLogger({
-    level: 'debug',
+    level: 'info',
     format: combine(
         timestamp({format : 'HH:mm DD-MM-YYYY'}),
         myFormat
