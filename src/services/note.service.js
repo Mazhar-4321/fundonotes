@@ -1,7 +1,6 @@
 import Note from '../models/note.model';
 import logger from '../config/myLogger';
-import { client } from '../index.js';
-const nodemailer = require('nodemailer');
+import { client } from '../config/database';
 
 
 export const createNote = async (note,userId) => {
@@ -52,7 +51,6 @@ export const findNote = async (req) => {
       _id: req.params.id,
       userId: req.body.userId
     });
-    console.log("Reached Here")
     if (data) {
       logger.info(`Note Fetched Successfully For ${req.params.id}`)
       return data;
@@ -183,8 +181,6 @@ export const deleteTrashNote = async (req) => {
     throw new Error(err);
   }
 };
-
-
 
 export const findArchivedNote = async (req) => {
   try {

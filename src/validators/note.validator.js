@@ -1,4 +1,4 @@
-const Joi = require('joi')
+import Joi from 'joi'
 
 export const newNoteValidator = (req, res, next) => {
     const schema = Joi.object({

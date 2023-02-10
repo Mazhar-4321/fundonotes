@@ -1,6 +1,8 @@
-const Joi = require('joi')
-const { joiPasswordExtendCore } = require('joi-password');
+import Joi from 'joi'
+import { joiPasswordExtendCore } from 'joi-password';
+
 const joiPassword = Joi.extend(joiPasswordExtendCore);
+
 export const newUserValidator = (req, res, next) => {
   const schema = Joi.object({
     firstName: Joi.string().pattern(new RegExp('([A-Z][a-zA-Z]{2,})')).required(),

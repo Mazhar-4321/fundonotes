@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer'
 import logger from '../config/myLogger';
 
 var transporter = nodemailer.createTransport({

@@ -63,6 +63,7 @@ export const findNote = async (req, res, next) => {
     });
   }
 };
+
 export const findAllNotes = async (req, res, next) => {
   try {
     const data = await NoteService.findAllNotes(req.body.userId);

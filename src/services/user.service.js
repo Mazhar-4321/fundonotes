@@ -3,9 +3,8 @@ import Token from '../models/token.model';
 import Jwt from 'jsonwebtoken';
 import { sendEmail } from '../utils/user.util';
 import logger from '../config/myLogger';
+import bcrypt from 'bcrypt'
 
-
-const bcrypt = require('bcrypt');
 export const registerUser = async (userData) => {
   try {
     userData.password = bcrypt.hashSync(userData.password, 10);
@@ -63,7 +62,7 @@ export const forgotPassword = async (email, res) => {
     }
   }
   catch (err) {
-    logger.error(`Could not Send Email To ${recipient}`)
+    logger.error(`Could not Send Email `)
     throw new Error(err)
   }
 }
